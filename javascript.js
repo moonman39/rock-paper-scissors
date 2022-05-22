@@ -1,5 +1,4 @@
-console.log("Hello world");
-
+// a function to generate a computer guess
 
 function computerPlay() {
     let computerChoice = Math.floor(Math.random() * 3);
@@ -12,6 +11,11 @@ function computerPlay() {
     };
 };
 
+// Create a playerSelection and computerSelection variable to generate paramaters for a subsequent function
+const playerSelection = prompt("Do you choose rock, paper, or scissors?");
+let computerSelection = computerPlay();
+
+// A function that plays a round of rock, paper, scissors and declares the winner
 function playRound(playerSelection, computerSelection) {
     let player = playerSelection.toLowerCase();
     let computer = computerSelection.toLowerCase();
@@ -33,6 +37,13 @@ function playRound(playerSelection, computerSelection) {
     }
 };
 
-const playerSelection = "ROCK";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        let computerSelection = computerPlay();
+        console.log(playRound(playerSelection, computerSelection));
+    };
+};
+
+console.log(game());
