@@ -1,5 +1,17 @@
 // This is a rock, paper, scissors game against a computer
 
+// This is a function to generate a computer guess
+const computerPlay = () => {
+  let computerGuess = Math.floor(Math.random() * 3);
+  if (computerGuess === 0) {
+    return "rock";
+  } else if (computerGuess === 1) {
+    return "paper";
+  } else {
+    return "scissors";
+  }
+};
+
 //This is a magic eight ball game
 
 /* 
