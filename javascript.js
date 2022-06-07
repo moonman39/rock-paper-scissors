@@ -7,10 +7,7 @@ const scissors = document.querySelector(".scissors");
 const results = document.querySelector(".result-content");
 const game = document.querySelector(".game");
 const newGame = document.querySelector(".new-game");
-<<<<<<< HEAD
-=======
 const newGameGrid = document.querySelector(".newGame-grid");
->>>>>>> rps-ui
 
 // Work on updating the score
 let computerScore = 0;
