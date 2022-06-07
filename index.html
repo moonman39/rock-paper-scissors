@@ -4,12 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <h1>Rock Paper Scissors</h1>
 
-    <sectiom class="game"> button </sectiom>
+    <div class="score">
+      <p class="user-score">User Score: <span class="user"></span></p>
+      <p class="computer-score">
+        Computer Score: <span class="computer"></span>
+      </p>
+    </div>
+
+    <sectiom class="game">
+      <button class="rock">Rock</button>
+      <button class="paper">Paper</button>
+      <button class="scissors">Scissors</button>
+    </sectiom>
+
+    <button class="new-game hidden">New Game</button>
+
+    <div class="results">
+      <p class="result-content"></p>
+    </div>
+
     <script src="./javascript.js"></script>
   </body>
 </html>
