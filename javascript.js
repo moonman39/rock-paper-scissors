@@ -1,119 +1,109 @@
 // This is a rock, paper, scissors game against a computer
 
-// a function to generate a computer guess
-function computerPlay() {
-  let computerChoice = Math.floor(Math.random() * 3);
-  if (computerChoice === 0) {
-    return "Rock";
-  } else if (computerChoice === 1) {
-    return "Paper";
-  } else {
-    return "Scissors";
-  }
-}
+// Querying the DOM
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
+const results = document.querySelector(".result-content");
+const game = document.querySelector(".game");
+const newGame = document.querySelector(".new-game");
 
-// Create a playerSelection and computerSelection variable to generate paramaters for a subsequent function
-let playerScore = 0;
+// Work on updating the score
 let computerScore = 0;
+let userScore = 0;
+const user = document.querySelector(".user");
+const computer = document.querySelector(".computer");
+user.textContent = userScore;
+computer.textContent = computerScore;
 
-// A function that plays a round of rock, paper, scissors and declares the winner
-function playRound(playerSelection, computerSelection) {
-  let player = playerSelection.toLowerCase();
-  let computer = computerSelection.toLowerCase();
-  console.log(`Computer Guess is: ${computer}.  Your Guess is: ${player}.`);
-  if (player === "paper" && computer === "rock") {
-    playerScore++;
-    return "You win! Paper beats Rock";
-  } else if (player === "paper" && computer === "scissors") {
-    computerScore++;
-    return `You lose! Scissors beats Paper.`;
-  } else if (player === "rock" && computer === "paper") {
-    computerScore++;
-    return "You lose! Paper beats rock";
-  } else if (player === "rock" && computer === "scissors") {
-    playerScore++;
-    return "You win! Rock beats Scissors";
-  } else if (player === "scissors" && computer === "paper") {
-    playerScore++;
-    return "You win! Scissors beats Paper";
-  } else if (player === "scissors" && computer === "rock") {
-    computerScore++;
-    return "You lose! Rock beats scissors";
+// This is a function to generate a computer guess
+const computerPlay = () => {
+  let computerGuess = Math.floor(Math.random() * 3);
+  if (computerGuess === 0) {
+    return "rock";
+  } else if (computerGuess === 1) {
+    return "paper";
   } else {
-    return "You tied!";
+    return "scissors";
   }
-}
-
-function game() {
-  alert("Rock, Paper, Scissors! First to 5 points wins.");
-  for (let i = 0; i < 100; i++) {
-    let computerSelection = computerPlay();
-    let playerSelection = prompt("Do you choose rock, paper, or scissors?");
-    console.log(playRound(playerSelection, computerSelection));
-    if (playerScore === 5) {
-      console.log(
-        `You won! You had ${playerScore} points to the computer's ${computerScore} points.`
-      );
-      break;
-    } else if (computerScore === 5) {
-      console.log(
-        `You lost! You had ${playerScore} points to the computer's ${computerScore} points.`
-      );
-      break;
-    }
-  }
-}
-
-console.log(game());
-
-//This is a magic eight ball game
-
-/* 
-function askEightBall () {
-    let randomAnswer = Math.floor(Math.random() * 8);
-    let response;
-    switch (randomAnswer) {
-        case 0:
-            response = 'It is not likely.';
-            break;
-        case 1:
-            response = 'It is certain.';
-            break;
-        case 2:
-            response = 'It is probable';
-            break;
-        case 3:
-            response = 'It is uncertain';
-            break;
-        case 4:
-            response = 'I can\'t see at the moment.';
-            break;
-        case 5:
-            response = 'It will happen.';
-            break;
-        case 6: 
-            response = 'Please ask again.';
-            break;
-        case 7:
-            response = 'I don\'t know.';
-            break;
-    };
-    return response;
 };
 
-function shakeBall () {
-    let user = prompt('What is your name?');
-    let question = prompt('What would you like to ask the magic eight ball?');
-    let answer = askEightBall();
-    console.log(`${user} asked the following: ${question}.  The magic eight ball is thinking...  thinking....  ${answer}`);
-}
+// A single round function that updates the HTML with the round results
+const singleRound = (playerSelection, computerSelection) => {
+  let player = playerSelection.toLowerCase();
+  let computer = computerSelection.toLowerCase();
+  if (player === "rock" && computer === "paper") {
+    results.textContent = `You chose rock.  The computer chose paper.  You lost!`;
+    computerScore++;
+  } else if (player === "rock" && computer === "scissors") {
+    results.textContent = `You chose rock.  The computer chose scissors.  You won!`;
+    userScore++;
+  } else if (player === "paper" && computer === "scissors") {
+    results.textContent = `You chose paper.  The computer chose scissors.  You lost!`;
+    computerScore++;
+  } else if (player === "paper" && computer === "rock") {
+    results.textContent = `You chose paper.  The computer chose rock.  You won!`;
+    userScore++;
+  } else if (player === "scissors" && computer === "rock") {
+    results.textContent = `You chose scissors.  The computer chose rock.  You lost!`;
+    computerScore++;
+  } else if (player === "scissors" && computer === "paper") {
+    results.textContent = `You chose scissors.  The computer chose paper.  You won!`;
+    userScore++;
+  } else {
+    results.textContent = `You both chose ${computer}.  You tied!`;
+  }
 
-shakeBall();
-*/
+  //   work on a function that tracks the first to 5 and starts the game over
+  if (userScore === 3) {
+    game.classList.add("hidden");
+    newGame.classList.remove("hidden");
+    results.textContent = `You won! Select "New Game" to play again.`;
+  } else if (computerScore === 3) {
+    game.classList.add("hidden");
+    newGame.classList.remove("hidden");
+    results.textContent = `You lost! Select "New Game" to play again.`;
+  }
+};
 
-// Write a function that converts hours into seconds
+// Rock Button Event Listener
+rock.addEventListener("click", () => {
+  let playerSelection = "rock";
+  let computerSelection = computerPlay();
+  singleRound(playerSelection, computerSelection);
+  user.textContent = userScore;
+  computer.textContent = computerScore;
+});
 
-/* Create a function that takes a number as an argument. Add up all the numbers 
-from 1 to the number you passed to the function. 
+// Paper Button Event Listener
+paper.addEventListener("click", () => {
+  if (userScore === 3 || computerScore === 3) {
+    user.textContent = 0;
+    computer.textContent = 0;
+  }
+  let playerSelection = "scissors";
+  let computerSelection = computerPlay();
+  singleRound(playerSelection, computerSelection);
+  user.textContent = userScore;
+  computer.textContent = computerScore;
+});
 
-For example, if the input is 4 then your function should return 10 because 1 + 2 + 3 + 4 = 10. */
+// Scissors Button Event Listener
+scissors.addEventListener("click", () => {
+  let playerSelection = "scissors";
+  let computerSelection = computerPlay();
+  singleRound(playerSelection, computerSelection);
+  user.textContent = userScore;
+  computer.textContent = computerScore;
+});
+
+// New Game Button Event Listener
+newGame.addEventListener("click", () => {
+  userScore = 0;
+  computerScore = 0;
+  user.textContent = userScore;
+  computer.textContent = computerScore;
+  game.classList.remove("hidden");
+  newGame.classList.add("hidden");
+  results.textContent = ``;
+});
