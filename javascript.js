@@ -7,6 +7,7 @@ const scissors = document.querySelector(".scissors");
 const results = document.querySelector(".result-content");
 const game = document.querySelector(".game");
 const newGame = document.querySelector(".new-game");
+const newGameGrid = document.querySelector(".newGame-grid");
 
 // Work on updating the score
 let computerScore = 0;
@@ -57,10 +58,12 @@ const singleRound = (playerSelection, computerSelection) => {
   //   work on a function that tracks the first to 5 and starts the game over
   if (userScore === 3) {
     game.classList.add("hidden");
+    game.classList.remove("game-grid");
     newGame.classList.remove("hidden");
     results.textContent = `You won! Select "New Game" to play again.`;
   } else if (computerScore === 3) {
     game.classList.add("hidden");
+    game.classList.remove("game-grid");
     newGame.classList.remove("hidden");
     results.textContent = `You lost! Select "New Game" to play again.`;
   }
@@ -104,6 +107,7 @@ newGame.addEventListener("click", () => {
   user.textContent = userScore;
   computer.textContent = computerScore;
   game.classList.remove("hidden");
+  game.classList.add("game-grid");
   newGame.classList.add("hidden");
   results.textContent = ``;
 });

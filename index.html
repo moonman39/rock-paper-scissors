@@ -5,32 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-    <style>
-      .hidden {
-        display: none;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Rock Paper Scissors</h1>
+    <div class="container">
+      <h1>Rock Paper Scissors</h1>
 
-    <div class="score">
-      <p class="user-score">User Score: <span class="user"></span></p>
-      <p class="computer-score">
-        Computer Score: <span class="computer"></span>
-      </p>
-    </div>
+      <div class="score">
+        <p class="user-score">User Score: <span class="user"></span></p>
+        <p class="computer-score">
+          Computer Score: <span class="computer"></span>
+        </p>
+      </div>
 
-    <div class="game">
-      <button class="rock">Rock</button>
-      <button class="paper">Paper</button>
-      <button class="scissors">Scissors</button>
-    </div>
+      <div class="game game-grid">
+        <button class="rock">Rock</button>
+        <button class="paper">Paper</button>
+        <button class="scissors">Scissors</button>
+      </div>
 
-    <button class="new-game hidden">New Game</button>
+      <div class="newGame-grid">
+        <button class="new-game hidden">New Game</button>
+      </div>
 
-    <div class="results">
-      <p class="result-content"></p>
+      <div class="results">
+        <p class="result-content"></p>
+      </div>
     </div>
 
     <script src="./javascript.js"></script>
